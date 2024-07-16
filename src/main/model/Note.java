@@ -1,6 +1,10 @@
+package model;
+
 import java.time.LocalDateTime;
 
-public class Note {
+import persistence.Writable;
+
+public class Note implements Writable {
 
     private String text;
     private LocalDateTime scheduledTime;
