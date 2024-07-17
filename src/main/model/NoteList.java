@@ -15,26 +15,34 @@ public class NoteList implements Writable {
     public NoteList(String newName) {
         this.name = newName;
         this.notesList = new ArrayList<Note>();
+        ActionLog.getInstance().logAction(new Action("Created new list \"" + newName + "\"."));
     }
 
     public void addNote(Note n) {
         this.notesList.add(n);
+        ActionLog.getInstance().logAction(new Action("Added new note \"" + n.getText() + "\" in note list \"" + this.name + "\"."));
     }
 
     public void deleteNote(Note n) {
         this.notesList.remove(n);
+        ActionLog.getInstance().logAction(new Action("Deleted note \"" + n.getText() + "\" in note list \"" + this.name + "\"."));
     }
 
     public void clear() {
         this.notesList.clear();
+        ActionLog.getInstance().logAction(new Action("Cleared all notes in note list \"" + this.name + "\"."));
     }
 
     public void updateTime() {
         this.lastUpdated = LocalDateTime.now();
+        ActionLog.getInstance().logAction(new Action("Updated date for note list \"" + this.name + "\"."));
+
     }
 
     public void setName(String nameInput) {
+        String temp = this.name;
         this.name = nameInput;
+        ActionLog.getInstance().logAction(new Action("Changed name of note list \"" + temp + "\" to \"" + this.name + "\"."));
     }
 
     public String getName() {

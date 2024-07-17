@@ -86,11 +86,9 @@ public class JsonReader {
     private Note produceNote(JSONObject noteObject) {
         String text = noteObject.getString("text");
         boolean flagged = noteObject.getBoolean("flagged");
-        boolean late = noteObject.getBoolean("late");
 
         Note thisNote = new Note(text);
         if (flagged) thisNote.changeFlag();
-        if (late) thisNote.markLate();
 
         if (noteObject.getBoolean("hasDate")) {
             int year = noteObject.getInt("dateYear");

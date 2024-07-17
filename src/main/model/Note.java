@@ -13,13 +13,15 @@ public class Note implements Writable {
 
     public Note(String textInput) {
         setText(textInput);
-        this.scheduledTime = null;
+        this.scheduledDate = null;
         this.flagged = false;
         this.late = false;
     }
 
     public void setText(String textInput) {
+        String prevText = this.text;
         this.text = textInput;
+        ActionLog.getInstance().logAction(new Action("Changed note text \"" + prevText + "\" to \"" + this.text + "\"."));
     }
 
     public String getText() {
@@ -28,6 +30,7 @@ public class Note implements Writable {
 
     public void setDate(LocalDate dateInput) {
         this.scheduledDate = timeInput;
+        ActionLog.getInstance().logAction(new Action("Changed date of note \"" + this.text + "\" to "+ this.scheduledDate.toString() +"."));
     }
 
     public LocalDate getDate() {
@@ -36,6 +39,7 @@ public class Note implements Writable {
 
     public void deleteDate() {
         this.scheduledDate = null;
+        ActionLog.getInstance().logAction(new Action("Deleted date of note \"" + this.text + "\"."));
     }
 
     public void changeFlag() {
@@ -44,10 +48,12 @@ public class Note implements Writable {
 
     public void markLate() {
         this.late = true;
+        ActionLog.getInstance().logAction(new Action("Marked note \"" + this.text + "\" to late."));
     }
 
     public void unmarkLate() {
         this.late = false;
+        ActionLog.getInstance().logAction(new Action("Unmarked note \"" + this.text + "\" to late."));
     }
 
     @Override

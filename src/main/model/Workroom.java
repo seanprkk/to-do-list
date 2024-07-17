@@ -23,15 +23,17 @@ public class Workroom implements Writable {
 
     public void addList(NoteList l) {
         lists.add(l);
+        ActionLog.getInstance().logAction(new Action("Added new list to workroom. Total " + numLists() + " lists."));
     }
 
     public void removeList(NoteList l) {
         lists.remove(l);
+        ActionLog.getInstance().logAction(new Action("Removed list \"" + l.getName() + "\" from workroom. Total " + numLists() + " lists."));
     }
 
     public List<NoteList> getLists() { return lists; }
 
-    public int numLists() {return lists.size() }
+    public int numLists() { return lists.size() }
 
     @Override
     public JSONObject toJson() {
