@@ -97,6 +97,7 @@ public class JsonReader {
             int month = noteObject.getInt("dateMonth");
             int day = noteObject.getInt("dateDay");
             LocalDate date = LocalDate.of(year,month,day);
+            thisNote.setDate(date);
         }
     
         return thisNote;

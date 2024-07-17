@@ -34,6 +34,10 @@ public class Note implements Writable {
         return this.scheduledDate;
     }
 
+    public void deleteDate() {
+        this.scheduledDate = null;
+    }
+
     public void changeFlag() {
         this.flagged = !this.flagged;
     }
@@ -52,9 +56,14 @@ public class Note implements Writable {
         json.put("text", text);
         json.put("flagged", flagged);
         json.put("late", late);
-        json.put("dateYear", getDate().getYear());
-        json.put("dateMonth", getDate().getMonth());
-        json.put("dateDay", getDate().getDayOfMonth());
+        if (getDate() != null) {
+            json.put("hasDate", true);
+            json.put("dateYear", getDate().getYear());
+            json.put("dateMonth", getDate().getMonth());
+            json.put("dateDay", getDate().getDayOfMonth());
+        } else {
+            json.put("hasDate", false);
+        }
         return json;
     }
 
