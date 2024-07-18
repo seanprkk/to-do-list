@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Represents an action on the Calendar App.
+ * Represents an action on the Note List App.
  */
 public class Action {
     private static final int HASH_CONSTANT = 13;

@@ -36,7 +36,6 @@ public class NoteList implements Writable {
     public void updateTime() {
         this.lastUpdated = LocalDateTime.now();
         ActionLog.getInstance().logAction(new Action("Updated date for note list \"" + this.name + "\"."));
-
     }
 
     public void setName(String nameInput) {
